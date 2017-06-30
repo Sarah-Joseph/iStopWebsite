@@ -1,0 +1,17 @@
+<!-- howdy/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+		<script src="istop.js"></script>
+		<div id="site-description">Ciccia Lab- Website Under Construction</div>
+	    <title>iStop</title>
+    </head>
+    <body>
+	<div class= "header"> <b> Password required to enter site</b> </div>
+		<form action="/istop/query/" method="post">
+			{% csrf_token %}
+			{{ passForm }}
+			<input type="submit" value="Submit" />
+		</form>
+	</body>
+</html>

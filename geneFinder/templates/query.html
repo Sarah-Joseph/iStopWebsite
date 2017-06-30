@@ -1,0 +1,81 @@
+<!-- howdy/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+		<script src="istop.js"></script>
+		<div id="site-description">Ciccia Lab- Website Under Construction</div>
+	    <title>iSTOP</title>
+    </head>
+	<style>
+header, footer {
+		color: grey;
+		padding: 1em;
+		text-align: left;
+		clear: left;
+}
+
+nav {
+	float: left;
+	max-width: 160px;
+	margin: 0;
+	padding: 1em;
+	border-right: 1px solid gray;
+}
+
+article {
+	margin-left: 170px;
+	padding: 1em;
+	overflow: hidden;
+}
+
+</style>
+    <body>
+<!--
+    	<div id="header">
+    	{% load static %}
+		<img src="{{ STATIC_URL }}/istop/DNA_Search_2.png"%} alt="My image" height= "300" width= "740"/>
+		</div> --> 
+	<header>
+        <h1> BETA: Welcome to iSTOP! <br> A database of sgRNAs for generating stop codons (sgSTOPs) 
+        using CRISPR-dependent base editing </h1>
+	</header>
+	<nav>
+	<h1> About iSTOP </h1>
+	<p> Please see "CRISPR-mediated base editing enables efficient disruption of eukaryotic genes through induction of STOP codons (iSTOP)", Billon P., <i> et al</i>. (under revision) <br> </br>If you want to study the sequences not found in the paper or reproduce the figures in the paper, please visit:<br> <a href= "http://www.github.com/CicciaLab/iSTOP">R package for iSTOP</a>and <a href= "http://www.github.com/CicciaLab/iSTOP-paper">R package for figures</a></br>
+</nav>
+	<article>
+		<div  id="rcontent" >
+			<h1 style ="color:green;">Search for Genes</h1>
+		<p>Please type in the gene symbol using UCSC gene names except for <i> A. thaliana</i> which uses TAIR.<br> <b> For example,
+		use KAT5 for TIP60.</b></p><p><br><u>New Feature!</u> It is now possible to design sgSTOPs for modeling nonsense mutations identified in cancer! (<i>Homo sapiens</i> only)</br></p> <br></br>
+			<div id="search" >
+				<!-- <form action="/sub_form/" method="post">
+	    			{% csrf_token %}
+	    			{{ form }}
+	    			<input type="submit" value="Submit" />
+				</form> -->
+				<form action="/istop/gene_form/" method="post">
+					{% csrf_token %}
+                                        {{ species }}
+					{{ geneForm }}
+					<input type="submit" value="Submit" />
+				</form>
+			</div>
+		</article>
+
+		</div> <br></br><br></br>
+<!-- End Main Body-->
+<footer>
+	<div id= 'footer'>
+	Created by Sarah Joseph and Aaron Meltzer (2017)
+	</div> 
+	<div id= 'footer'>
+	For more information on our lab please visit the  <a href= "http://www.ciccialab.com">Ciccia Lab</a> <br>Contact <a href= "mailto:saj2143@cumc.columbia.edu?Subject=iSTOP" target="_top">Sarah Joseph</a> for questions regarding the website
+	</div>
+	</div>
+</footer>
+	</div>
+	</div>
+
+	</body>
+</html>

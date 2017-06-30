@@ -1,0 +1,80 @@
+<!-- howdy/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+		<script src="istop.js"></script>
+		<div id="site-description">Ciccia Lab-Website Under Construction</div>
+	    <style>
+		    body {
+		    }
+		    table{
+		    	border-collapse: collapse;
+		    	text-align: center;
+		    	padding:10px
+		    }
+		    table,th,td{
+		    	border: 1px solid black;
+			border-collapse: collapse;
+			padding: 10px;
+			white-space: nowrap;
+		    }
+	            th{
+		      background-color: black;
+		      color: white;
+			}
+		    tr:nth-child(odd) {
+		     background-color: Aliceblue;
+			}
+		    tr:nth-child(even) {
+		     background-color: mintcream;
+			}
+	    </style>
+	    <title>iStop</title>
+    </head>
+    <body>
+        <h1 style = "color: green;"> Results for: {{ SpeciesName }}</h1>
+		<p> The last nucleotides in the sgRNA sequence for iSTOP (sgSTOP) are the Protospacer Adjacent Motif (<span style = "color:red;">PAM</span>). Please exclude them when making your guide RNAs. The lower case letter indicates the <b>targeted base</b>.</span> <br> Example: GTTCCC<b>c</b>AATTGAAAGTTGC<span style = "color:red;">AGA.</span> <br></br> Each line corresponds with a different targeted base for the indicated gene. Transcript coordinates are from the UCSC genome browser for each species except <i> A. thaliana</i>, which uses TAIR. AA Coordinates indicate the location of the targeted amino acid in the protein sequence while CDS Coordinates indicate the location of the targeted base in the DNA coding sequence. Therefore, while AA coordinate 1 = "ATG" CDS coordinate 1 = "A". Restriction Enzyme indicates the restriction enzymes that can be used to check the efficiency of base editing at the targeted base. Nonsense Mediated Decay (NMD) Prediction indicates whether NMD is likely to occur.  NA means no sgSTOP or restriction enzyme available. <br> To see the location of the sgSTOP within your gene of interest please visit: <a href= "http://genome.ucsc.edu/cgi-bin/hgBlat?hgsid=589639019_WVaJ0AV6gjRTmBVJLPwUljdI3oGQ&command=start">UCSC</a> or <a href="http://www.arabidopsis.org/Blast/index.jsp">TAIR</a>. <br><b>Using the links</b> (only for organisms in the UCSC genome browser): Before clicking the link on each sgSTOP, make sure to set the BLAT search in the UCSC genome browser to the organism that you want to search by clicking  <a href="http://genome.ucsc.edu/cgi-bin/hgBlat">here</a>. Then click on the link and it will automatically search for the sgSTOP in the UCSC genome browser.</br>
+    	{% if query_results %}
+			<table>
+				<tr>
+					{% for item in headers %}
+					<th>{{ item }}</th>
+					{% endfor %}
+				</tr>
+				{% for item in query_results %}
+				<tr>
+					{% if 'id' in headers %} <td>{{ item.id }}</td> {% endif %}
+					{% if 'Gene Name' in headers %} <td>{{ item.gene }}</td> {% endif %}
+					{% if 'Transcript(s)' in headers %} <td>{{ item.txs }}</td> {% endif %}
+					{% if 'exon' in headers %} <td>{{ item.exon }}</td> {% endif %}
+					{% if 'pep_length' in headers %} <td>{{ item.pep_length }}</td> {% endif %}
+					{% if 'cds_length' in headers %} <td>{{ item.cds_length }}</td> {% endif %}
+					{% if 'chr' in headers %} <td>{{ item.chr }}</td> {% endif %}
+					{% if 'Strand' in headers %} <td>{{ item.strand }}</td> {% endif %}
+					{% if 'sg_strand' in headers %} <td>{{ item.sg_strand }}</td> {% endif %}
+					{% if 'aa_target' in headers %} <td>{{ item.aa_target }}</td> {% endif %}
+					{% if 'Codon' in headers %} <td>{{ item.codon }}</td> {% endif %}
+					{% if 'AA Coordinates' in headers %} <td>{{ item.aa_coords }}</td> {% endif %}
+					{% if 'CDS Coordinates' in headers %} <td>{{ item.cds_coords }}</td> {% endif %}
+					{% if 'genome_coord' in headers %} <td>{{ item.genome_coord }}</td> {% endif %}
+					{% if 'n_tx_in_gene' in headers %} <td>{{ item.n_tx_in_gene }}</td> {% endif %}
+					{% if 'n_tx' in headers %} <td>{{ item.n_tx }}</td> {% endif %}
+					{% if 'Percent Transcript' in headers %} <td>{{ item.percent_tx }}</td> {% endif %}
+					{% if 'sarched' in headers %} <td>{{ item.searched }}</td> {% endif %}
+					{% if 'PAM: NGG' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgngg }}">{{ item.sgngg }}</a></td> {% endif %}
+					{% if 'PAM: NGA' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgnga }}">{{ item.sgnga }}</a></td> {% endif %}
+					{% if 'PAM: NGCG' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgngcg }}">{{ item.sgngcg }}</a></td> {% endif %}
+					{% if 'PAM: NGAG' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgngag }}">{{ item.sgngag }}</a></td> {% endif %}
+					{% if 'PAM: NNGRRT' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgnngrrt }}">{{ item.sgnngrrt }}</a></td> {% endif %}
+					{% if 'PAM: NNNRRT' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgnnnrrt }}">{{ item.sgnnnrrt }}</a></td> {% endif %}
+					{% if 'Restriction Enzymes-150' in headers %} <td>{{ item.rflp_150 }}</td> {% endif %}
+					{% if 'Restriction Enzymes-50' in headers %} <td>{{ item.rflp_50 }}</td> {% endif %}
+					{% if 'species' in headers %} <td>{{ item.species }}</td> {% endif %}
+					{% if 'NMD Prediction' in headers %} <td>{{ item.nmd_pred }} </td> {% endif %}
+					{% if 'Cancer type(s)' in headers %} <td> {{ item.cancer_type }} </td> {% endif %}
+				</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+	</body> 
+</html>
