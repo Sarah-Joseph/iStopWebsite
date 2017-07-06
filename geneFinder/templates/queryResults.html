@@ -1,11 +1,29 @@
-<!-- howdy/templates/index.html -->
 <!DOCTYPE html>
 <html>
     <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="istop.js"></script>
-		<div id="site-description">Ciccia Lab-Website Under Construction</div>
-	    <style>
+		<script type="text/javascript" src="/opt/bitnami/apps/django/jquery-3.2.1.min.js"></script> 
+		<script type="text/javascript" src="/opt/bitnami/apps/django/Mottie-tablesorter-08bf513/js/jquery.tablesorter.js"></script> 
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+  
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+		<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/r-2.1.1/datatables.min.css"/>
+ 
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/r-2.1.1/datatables.min.js"></script>
+
+
+
+		 <style>
 		    body {
+			padding: 10px;
 		    }
 		    table{
 		    	border-collapse: collapse;
@@ -21,6 +39,7 @@
 	            th{
 		      background-color: black;
 		      color: white;
+                      text-align: center;
 			}
 		    tr:nth-child(odd) {
 		     background-color: Aliceblue;
@@ -31,16 +50,41 @@
 	    </style>
 	    <title>iStop</title>
     </head>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">iSTOP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/query">Home</a></li>
+        <li class="{% if nbar == 'about' %}active{% endif %}"><a href="/istop/faq">FAQ</a></li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
     <body>
         <h1 style = "color: green;"> Results for: {{ SpeciesName }}</h1>
-		<p> The last nucleotides in the sgRNA sequence for iSTOP (sgSTOP) are the Protospacer Adjacent Motif (<span style = "color:red;">PAM</span>). Please exclude them when making your guide RNAs. The lower case letter indicates the <b>targeted base</b>.</span> <br> Example: GTTCCC<b>c</b>AATTGAAAGTTGC<span style = "color:red;">AGA.</span> <br></br> Each line corresponds with a different targeted base for the indicated gene. Transcript coordinates are from the UCSC genome browser for each species except <i> A. thaliana</i>, which uses TAIR. AA Coordinates indicate the location of the targeted amino acid in the protein sequence while CDS Coordinates indicate the location of the targeted base in the DNA coding sequence. Therefore, while AA coordinate 1 = "ATG" CDS coordinate 1 = "A". Restriction Enzyme indicates the restriction enzymes that can be used to check the efficiency of base editing at the targeted base. Nonsense Mediated Decay (NMD) Prediction indicates whether NMD is likely to occur.  NA means no sgSTOP or restriction enzyme available. <br> To see the location of the sgSTOP within your gene of interest please visit: <a href= "http://genome.ucsc.edu/cgi-bin/hgBlat?hgsid=589639019_WVaJ0AV6gjRTmBVJLPwUljdI3oGQ&command=start">UCSC</a> or <a href="http://www.arabidopsis.org/Blast/index.jsp">TAIR</a>. <br><b>Using the links</b> (only for organisms in the UCSC genome browser): Before clicking the link on each sgSTOP, make sure to set the BLAT search in the UCSC genome browser to the organism that you want to search by clicking  <a href="http://genome.ucsc.edu/cgi-bin/hgBlat">here</a>. Then click on the link and it will automatically search for the sgSTOP in the UCSC genome browser.</br>
-    	{% if query_results %}
-			<table>
+		<p> The last nucleotides in the sgRNA sequence for iSTOP (sgSTOP) are the Protospacer Adjacent Motif (<span style = "color:red;">PAM</span>). Please exclude them when making your guide RNAs. The lower case letter indicates the <b>targeted base</b>.</span> <br> Example: GTTCCC<b>c</b>AATTGAAAGTTGC<span style = "color:red;">AGA.</span>
+<br><b>Using the links</b> (only for organisms in the UCSC genome browser): Before clicking the link on each sgSTOP, make sure to set the BLAT search in the UCSC genome browser to the organism that you want to search by clicking  <a href="http://genome.ucsc.edu/cgi-bin/hgBlat">here</a>. Then click on the link and it will automatically search for the sgSTOP in the UCSC genome browser.</br>
+
+
+  	{%  if query_results %}
+			<table id="dataTable" class="display table" cellspacing="0" width="100%">
+   			<thead>
 				<tr>
 					{% for item in headers %}
 					<th>{{ item }}</th>
 					{% endfor %}
 				</tr>
+				</thead>
+				<tbody>
 				{% for item in query_results %}
 				<tr>
 					{% if 'id' in headers %} <td>{{ item.id }}</td> {% endif %}
@@ -74,7 +118,33 @@
 					{% if 'Cancer type(s)' in headers %} <td> {{ item.cancer_type }} </td> {% endif %}
 				</tr>
 				{% endfor %}
+			</tbody>
 			</table>
-		{% endif %}
-	</body> 
+		{%  endif %}
+	</body>
+<script>
+$(document).ready(function() {
+      var table = $("#dataTable").DataTable( { 
+          dom: 'Bfrtip',
+          buttons: [
+             'colvis',
+             'excelHtml5'
+          ],
+
+          responsive: true,
+       	  columnDefs: [
+           { responsivePriority: 1, targets:4 },
+           { responsivePriority: 2, targets:5 },
+           { responsivePriority: 3, targets:6 },
+
+	   { "visible": false, "targets": 1 },
+	   { "visible": false, "targets": 2 },
+           { "visible": false, "targets": 3 },
+
+		]
+
+	} );
+
+} );
+</script> 
 </html>

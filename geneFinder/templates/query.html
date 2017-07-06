@@ -2,19 +2,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<script src="istop.js"></script>
-		<div id="site-description">Ciccia Lab- Website Under Construction</div>
-	    <title>iSTOP</title>
+  	<meta charset="utf-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        	    <title>iSTOP</title>
     </head>
 	<style>
 header, footer {
-		color: grey;
+		color: black;
 		padding: 1em;
-		text-align: left;
+		text-align: center;
 		clear: left;
+		font-size: 14px;
 }
 
-nav {
+.sidenav {
 	float: left;
 	max-width: 160px;
 	margin: 0;
@@ -27,24 +31,38 @@ article {
 	padding: 1em;
 	overflow: hidden;
 }
-
+p.inset {border-style: inset;}
 </style>
+<header>
     <body>
-<!--
-    	<div id="header">
-    	{% load static %}
-		<img src="{{ STATIC_URL }}/istop/DNA_Search_2.png"%} alt="My image" height= "300" width= "740"/>
-		</div> --> 
-	<header>
-        <h1> BETA: Welcome to iSTOP! <br> A database of sgRNAs for generating stop codons (sgSTOPs) 
+        <h1>Welcome to iSTOP! <br> A database of sgRNAs for generating stop codons (sgSTOPs) 
         using CRISPR-dependent base editing </h1>
 	</header>
-	<nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">iSTOP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/query">Home</a></li>
+        <li class="{% if nbar == 'about' %}active{% endif %}"><a href="/istop/faq">FAQ</a></li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+<div class="sidenav">
 	<h1> About iSTOP </h1>
 	<p> Please see "CRISPR-mediated base editing enables efficient disruption of eukaryotic genes through induction of STOP codons (iSTOP)", Billon P., <i> et al</i>. (under revision) <br> </br>If you want to study the sequences not found in the paper or reproduce the figures in the paper, please visit:<br> <a href= "http://www.github.com/CicciaLab/iSTOP">R package for iSTOP</a>and <a href= "http://www.github.com/CicciaLab/iSTOP-paper">R package for figures</a></br>
-</nav>
+</div>
 	<article>
-		<div  id="rcontent" >
+		<div class="container-fluid" >
 			<h1 style ="color:green;">Search for Genes</h1>
 		<p>Please type in the gene symbol using UCSC gene names except for <i> A. thaliana</i> which uses TAIR.<br> <b> For example,
 		use KAT5 for TIP60.</b></p><p><br><u>New Feature!</u> It is now possible to design sgSTOPs for modeling nonsense mutations identified in cancer! (<i>Homo sapiens</i> only)</br></p> <br></br>
@@ -57,13 +75,32 @@ article {
 				<form action="/istop/gene_form/" method="post">
 					{% csrf_token %}
                                         {{ species }}
-					{{ geneForm }}
+
+<div class= "container">
+<button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#advsearch">
+<span class ="glyphicon glyphicon-search"></span> Advanced Search</button>
+<div id="advsearch" class="collapse">
+<p class= "inset">
+<h2><b>Filter the Search</b></h2>
+	{{ advancesearch }}	
+</p>
+</div>
+
+
 					<input type="submit" value="Submit" />
 				</form>
 			</div>
-		</article>
+	
 
 		</div> <br></br><br></br>
+
+
+</article>
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
 <!-- End Main Body-->
 <footer>
 	<div id= 'footer'>

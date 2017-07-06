@@ -8,7 +8,7 @@
     </head>
     <body>
 	<div class= "header"> <b> Password required to enter site</b> </div>
-		<form action="/istop/query/" method="post">
+		<form action="/istop/" method="post">
 			{% csrf_token %}
 			{{ passForm }}
 			<input type="submit" value="Submit" />

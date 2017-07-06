@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FAQ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Frequently Asked Questions</h1>
+</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">iSTOP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/query">Home</a></li>
+        <li class="{% if nbar == 'about' %}active{% endif %}"><a href="/istop/faq">FAQ</a></li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+<div class="container">
+<h3> What does each row show?</h3>
+<p>Each line corresponds with a different targeted base for the indicated gene.</p>
+
+<h3> Where are the transcript coordinates from? </h3>
+
+<p>Transcript coordinates are from the UCSC genome browser for each species except <i> A. thaliana</i>, which uses TAIR.</p>
+
+
+<h3> What is the difference between AA Coordinates and CDS Coordinates?</h3>
+
+<p>AA Coordinates indicate the location of the targeted amino acid in the protein sequence while CDS Coordinates indicate the location of the targeted base in the DNA coding sequence. Therefore, while AA coordinate 1 = "ATG" CDS coordinate 1 = "A".</p> 
+
+<h3> What does the Restriction Enzyme column mean?</h3>
+
+<p>Restriction Enzyme indicates the restriction enzymes that can be used to check the efficiency of base editing at the targeted base.</p> 
+
+<h3> What does the NMD column mean?</h3>
+<p>Nonsense Mediated Decay (NMD) Prediction indicates whether NMD is likely to occur.</p> 
+
+<h3> What does "NA" mean?</h3>
+<p>NA means no sgSTOP or restriction enzyme available.</p>
+
+<h3> How may I find where the sgSTOP is located in my gene of interest?</h3>
+<p>To see the location of the sgSTOP within your gene of interest please visit: <a href= "http://genome.ucsc.edu/cgi-bin/hgBlat?hgsid=589639019_WVaJ0AV6gjRTmBVJLPwUljdI3oGQ&command=start">UCSC</a> or <a href="http://www.arabidopsis.org/Blast/index.jsp">TAIR</a>. You can also click on the links which will take you directly to the UCSC genome browser.
+</p>
+</div>

@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from geneFinder import views
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.HomePageView.as_view()),
+    url(r'^$', views.post_query),
     url(r'^gene_form/',views.post_geneForm),
-    url(r'^istop/query',views.post_query),
-    url(r'^query/',views.post_query)
+    url(r'^query',views.query_page),
+    url(r'^faq/',views.faq_page)
 ]
+
