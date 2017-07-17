@@ -21,6 +21,9 @@ urlpatterns = [
     url(r'^$', views.post_query),
     url(r'^gene_form/',views.post_geneForm),
     url(r'^query',views.query_page),
-    url(r'^faq/',views.faq_page)
+    url(r'^faq/',views.faq_page),
+    url(r'^cancergene_form/',views.post_cancerGene),
+    url(r'^cancertype_form/',views.post_cancerType)
+
 ]
 

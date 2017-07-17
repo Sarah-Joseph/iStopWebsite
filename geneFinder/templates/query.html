@@ -63,9 +63,15 @@ p.inset {border-style: inset;}
 </div>
 	<article>
 		<div class="container-fluid" >
+		<ul class="nav nav-tabs">
+			<li class= "active"><a data-toggle="tab"  href="##Gene">Gene Search</a></li>
+			<li><a data-toggle="tab" href="##Cancer">Cancer Search</a></li>
+		</ul>
+		<div class= "tab-content">
+		    	<div id="Gene" class="tab-pane fade in active">
 			<h1 style ="color:green;">Search for Genes</h1>
 		<p>Please type in the gene symbol using UCSC gene names except for <i> A. thaliana</i> which uses TAIR.<br> <b> For example,
-		use KAT5 for TIP60.</b></p><p><br><u>New Feature!</u> It is now possible to design sgSTOPs for modeling nonsense mutations identified in cancer! (<i>Homo sapiens</i> only)</br></p> <br></br>
+		use KAT5 for TIP60.</b></p><p><br><u>New Feature!</u> It is now possible to design sgSTOPs for modeling nonsense mutations identified in cancer! (<i>Homo sapiens</i> only)</br></p>
 			<div id="search" >
 				<!-- <form action="/sub_form/" method="post">
 	    			{% csrf_token %}
@@ -86,21 +92,66 @@ p.inset {border-style: inset;}
 </p>
 </div>
 
-
 					<input type="submit" value="Submit" />
-				</form>
-			</div>
-	
+			</form>
+				
+		</div>
+		</div>
+		</div>
+		<div id="Cancer" class="tab-pane fade">
+		<h1 style= "color:green;">Search for sgSTOPs that model nonsense mutations identified in cancer</h1>
+		<div class= "row">
+			<div class= "col-sm-5"> <p>Either enter a gene name to search for sgSTOPs that model nonsense mutations identified in cancer</p>
+			<form action="/istop/cancergene_form/" method="post">
+				{% csrf_token %}
+   				{{ cancergene }}
 
-		</div> <br></br><br></br>
+			<input type="submit" name="cancergeneSubmit" value="Submit" />
+			<br></br>
+		<button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#rank1">
+		<span class ="glyphicon glyphicon-search"></span> Advanced Search</button>
+		<div id="rank1" class="collapse">
+		<p class= "inset">
+		<h2><b>Filter the Search</b></h2>
+			{{ cancergeneadvance }}
+		</p>
+		</div>
+			
+	</form>
+</div>
+		 	<div class= "col-sm-2 text-center"><h1>Or</h1></div>
+			<div class= "col-sm-5"><p>Select the cancer type(s) to display sgSTOPs for all the genes that would model nonsense mutations in that type</p>
+	<div class="col-sm-5">
+        <form action="/istop/cancertype_form/" method="post">	
+	{% csrf_token %}
+	{{ cancertype }}
 
+	<input type="submit" name="cancertypeSubmit" value="Submit" />
+	</div>
+<div class= "col-sm-5">
+<div class= "container">
+<button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#rank">
+<span class ="glyphicon glyphicon-search"></span> Advanced Search</button>
+<div id="rank" class="collapse">
+<p class= "inset">
+<h2><b>Filter the Search</b></h2>
+	{{ cancertypeadvance }}
+</p>
+</div>
 
+</div>
+      </form>
+</div>
+		</div>
+           </div>
+	</div>
 </article>
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
+
 <!-- End Main Body-->
 <footer>
 	<div id= 'footer'>

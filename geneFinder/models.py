@@ -37,107 +37,118 @@ class DjangoMigrations(models.Model):
         db_table = 'django_migrations'
 
 
-class Fly(models.Model):
+class Fish(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'fish'
+
+
+class Fly(models.Model):
+    id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
+    gene = models.TextField(blank=True, null=True)
+    chr = models.TextField(blank=True, null=True)
+    strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
+    aa_target = models.TextField(blank=True, null=True)
+    codon = models.TextField(blank=True, null=True)
+    n_tx_in_gene = models.TextField(blank=True, null=True)
+    percent_tx = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
+    sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
+    sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'fly'
 
 
-class Frog(models.Model):
-    id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
-    gene = models.TextField(blank=True, null=True)
-    chr = models.TextField(blank=True, null=True)
-    strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
-    aa_target = models.TextField(blank=True, null=True)
-    codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
-    n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
-    percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
-    sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
-    sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
-    sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
-    sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
-    sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
-    sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'frog'
-
-
 class Humans(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
-    sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
-    sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
-    sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
-    sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
-    sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
-    sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     cancer_type = models.TextField(blank=True, null=True)
-    cosmic_nonsense = models.TextField(db_column='COSMIC_nonsense', blank=True, null=True)  # Field name made lowercase.
+    sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
+    sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -146,33 +157,37 @@ class Humans(models.Model):
 
 class Mouse(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -181,33 +196,37 @@ class Mouse(models.Model):
 
 class Nematode(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -216,33 +235,37 @@ class Nematode(models.Model):
 
 class Plant(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -251,33 +274,37 @@ class Plant(models.Model):
 
 class Rat(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -286,33 +313,37 @@ class Rat(models.Model):
 
 class Yeast(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    txs = models.TextField(blank=True, null=True)
     gene = models.TextField(blank=True, null=True)
     chr = models.TextField(blank=True, null=True)
     strand = models.TextField(blank=True, null=True)
-    sg_strand = models.TextField(blank=True, null=True)
+    genome_coord = models.TextField(blank=True, null=True)
     aa_target = models.TextField(blank=True, null=True)
     codon = models.TextField(blank=True, null=True)
-    genome_coord = models.TextField(blank=True, null=True)
     n_tx_in_gene = models.TextField(blank=True, null=True)
-    n_tx = models.TextField(blank=True, null=True)
     percent_tx = models.TextField(blank=True, null=True)
-    searched = models.TextField(blank=True, null=True)
+    percent_nmd = models.TextField(db_column='percent_NMD', blank=True, null=True)  # Field name made lowercase.
+    rel_pos_largest_isoform = models.TextField(blank=True, null=True)
+    no_upstream_g = models.TextField(db_column='no_upstream_G', blank=True, null=True)  # Field name made lowercase.
+    rflp_loss = models.TextField(db_column='RFLP_Loss', blank=True, null=True)  # Field name made lowercase.
+    rflp_gain = models.TextField(db_column='RFLP_Gain', blank=True, null=True)  # Field name made lowercase.
     sgngg = models.TextField(db_column='sgNGG', blank=True, null=True)  # Field name made lowercase.
+    sgngg_spacing = models.TextField(db_column='sgNGG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngg_matches = models.TextField(db_column='sgNGG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnga = models.TextField(db_column='sgNGA', blank=True, null=True)  # Field name made lowercase.
+    sgnga_spacing = models.TextField(db_column='sgNGA_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnga_matches = models.TextField(db_column='sgNGA_matches', blank=True, null=True)  # Field name made lowercase.
     sgngcg = models.TextField(db_column='sgNGCG', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_spacing = models.TextField(db_column='sgNGCG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngcg_matches = models.TextField(db_column='sgNGCG_matches', blank=True, null=True)  # Field name made lowercase.
     sgngag = models.TextField(db_column='sgNGAG', blank=True, null=True)  # Field name made lowercase.
+    sgngag_spacing = models.TextField(db_column='sgNGAG_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgngag_matches = models.TextField(db_column='sgNGAG_matches', blank=True, null=True)  # Field name made lowercase.
     sgnngrrt = models.TextField(db_column='sgNNGRRT', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_spacing = models.TextField(db_column='sgNNGRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnngrrt_matches = models.TextField(db_column='sgNNGRRT_matches', blank=True, null=True)  # Field name made lowercase.
     sgnnnrrt = models.TextField(db_column='sgNNNRRT', blank=True, null=True)  # Field name made lowercase.
-    exons = models.TextField(blank=True, null=True)
-    pep_lengths = models.TextField(blank=True, null=True)
-    cds_lengths = models.TextField(blank=True, null=True)
-    aa_coords = models.TextField(blank=True, null=True)
-    cds_coords = models.TextField(blank=True, null=True)
-    nmd_pred = models.TextField(db_column='NMD_pred', blank=True, null=True)  # Field name made lowercase.
-    rflp_150 = models.TextField(db_column='RFLP_150', blank=True, null=True)  # Field name made lowercase.
-    rflp_100 = models.TextField(db_column='RFLP_100', blank=True, null=True)  # Field name made lowercase.
-    rflp_50 = models.TextField(db_column='RFLP_50', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_spacing = models.TextField(db_column='sgNNNRRT_spacing', blank=True, null=True)  # Field name made lowercase.
+    sgnnnrrt_matches = models.TextField(db_column='sgNNNRRT_matches', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

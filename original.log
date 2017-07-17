@@ -1,0 +1,133 @@
+commit a353103f65be1dbce4ebb0a16b4c5b3dd0ec725e
+Author: Sarah <sjose10@u.rochester.edu>
+Date:   Thu Jul 6 08:17:08 2017 -0700
+
+    Revert "Updates to my project"
+    
+    This reverts commit 7ce0f7d089c0fd4f8fb76a75f7e50661710fa908.
+    
+    	modified:   conf/httpd-app.conf
+    	modified:   conf/httpd-prefix.conf
+    	deleted:    fabfile.py
+    	modified:   geneFinder/forms.py
+    	modified:   geneFinder/forms.pyc
+    	deleted:    geneFinder/tables.py
+    	deleted:    geneFinder/templates/faq.html
+    	modified:   geneFinder/templates/index.html
+    	modified:   geneFinder/templates/query.html
+    	modified:   geneFinder/templates/queryResults.html
+    	new file:   geneFinder/urls.py
+    	modified:   geneFinder/views.py
+    	modified:   geneFinder/views.pyc
+    	modified:   istop/settings.py
+    	modified:   istop/settings.pyc
+    	deleted:    istop/static/admin/css/base.css
+    	deleted:    istop/static/admin/css/changelists.css
+    	deleted:    istop/static/admin/css/dashboard.css
+    	deleted:    istop/static/admin/css/fonts.css
+    	deleted:    istop/static/admin/css/forms.css
+    	deleted:    istop/static/admin/css/login.css
+    	deleted:    istop/static/admin/css/rtl.css
+    	deleted:    istop/static/admin/css/widgets.css
+    	deleted:    istop/static/admin/fonts/LICENSE.txt
+    	deleted:    istop/static/admin/fonts/README.txt
+    	deleted:    istop/static/admin/fonts/Roboto-Bold-webfont.woff
+    	deleted:    istop/static/admin/fonts/Roboto-Light-webfont.woff
+    	deleted:    istop/static/admin/fonts/Roboto-Regular-webfont.woff
+    	deleted:    istop/static/admin/img/LICENSE
+    	deleted:    istop/static/admin/img/README.txt
+    	deleted:    istop/static/admin/img/calendar-icons.svg
+    	deleted:    istop/static/admin/img/gis/move_vertex_off.svg
+    	deleted:    istop/static/admin/img/gis/move_vertex_on.svg
+    	deleted:    istop/static/admin/img/icon-addlink.svg
+    	deleted:    istop/static/admin/img/icon-alert.svg
+    	deleted:    istop/static/admin/img/icon-calendar.svg
+    	deleted:    istop/static/admin/img/icon-changelink.svg
+    	deleted:    istop/static/admin/img/icon-clock.svg
+    	deleted:    istop/static/admin/img/icon-deletelink.svg
+    	deleted:    istop/static/admin/img/icon-no.svg
+    	deleted:    istop/static/admin/img/icon-unknown-alt.svg
+    	deleted:    istop/static/admin/img/icon-unknown.svg
+    	deleted:    istop/static/admin/img/icon-yes.svg
+    	deleted:    istop/static/admin/img/image2.JPG
+    	deleted:    istop/static/admin/img/inline-delete.svg
+    	deleted:    istop/static/admin/img/search.svg
+    	deleted:    istop/static/admin/img/selector-icons.svg
+    	deleted:    istop/static/admin/img/sorting-icons.svg
+    	deleted:    istop/static/admin/img/tooltag-add.svg
+    	deleted:    istop/static/admin/img/tooltag-arrowright.svg
+    	deleted:    istop/static/admin/js/SelectBox.js
+    	deleted:    istop/static/admin/js/SelectFilter2.js
+    	deleted:    istop/static/admin/js/actions.js
+    	deleted:    istop/static/admin/js/actions.min.js
+    	deleted:    istop/static/admin/js/admin/DateTimeShortcuts.js
+    	deleted:    istop/static/admin/js/admin/RelatedObjectLookups.js
+    	deleted:    istop/static/admin/js/calendar.js
+    	deleted:    istop/static/admin/js/cancel.js
+    	deleted:    istop/static/admin/js/change_form.js
+    	deleted:    istop/static/admin/js/collapse.js
+    	deleted:    istop/static/admin/js/collapse.min.js
+    	deleted:    istop/static/admin/js/core.js
+    	deleted:    istop/static/admin/js/inlines.js
+    	deleted:    istop/static/admin/js/inlines.min.js
+    	deleted:    istop/static/admin/js/jquery.init.js
+    	deleted:    istop/static/admin/js/popup_response.js
+    	deleted:    istop/static/admin/js/prepopulate.js
+    	deleted:    istop/static/admin/js/prepopulate.min.js
+    	deleted:    istop/static/admin/js/prepopulate_init.js
+    	deleted:    istop/static/admin/js/timeparse.js
+    	deleted:    istop/static/admin/js/urlify.js
+    	deleted:    istop/static/admin/js/vendor/jquery/LICENSE-JQUERY.txt
+    	deleted:    istop/static/admin/js/vendor/jquery/jquery.js
+    	deleted:    istop/static/admin/js/vendor/jquery/jquery.min.js
+    	deleted:    istop/static/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt
+    	deleted:    istop/static/admin/js/vendor/xregexp/xregexp.js
+    	deleted:    istop/static/admin/js/vendor/xregexp/xregexp.min.js
+    	deleted:    istop/static/django_tables2/bootstrap.css
+    	deleted:    istop/static/django_tables2/themes/paleblue/css/screen.css
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/arrow-active-down.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/arrow-active-up.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/arrow-inactive-down.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/arrow-inactive-up.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/false.gif
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/header-bg.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/missing.png
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/pagination-bg.gif
+    	deleted:    istop/static/django_tables2/themes/paleblue/img/true.gif
+    	deleted:    istop/static/img/iSTOP.png
+    	deleted:    istop/static/table/css/datatable.bootstrap.css
+    	deleted:    istop/static/table/fonts/glyphicons-halflings-regular.eot
+    	deleted:    istop/static/table/fonts/glyphicons-halflings-regular.svg
+    	deleted:    istop/static/table/fonts/glyphicons-halflings-regular.ttf
+    	deleted:    istop/static/table/fonts/glyphicons-halflings-regular.woff
+    	deleted:    istop/static/table/images/Sorting icons.psd
+    	deleted:    istop/static/table/images/back_disabled.png
+    	deleted:    istop/static/table/images/back_enabled.png
+    	deleted:    istop/static/table/images/back_enabled_hover.png
+    	deleted:    istop/static/table/images/favicon.ico
+    	deleted:    istop/static/table/images/forward_disabled.png
+    	deleted:    istop/static/table/images/forward_enabled.png
+    	deleted:    istop/static/table/images/forward_enabled_hover.png
+    	deleted:    istop/static/table/images/sort_asc.png
+    	deleted:    istop/static/table/images/sort_asc_disabled.png
+    	deleted:    istop/static/table/images/sort_both.png
+    	deleted:    istop/static/table/images/sort_desc.png
+    	deleted:    istop/static/table/images/sort_desc_disabled.png
+    	deleted:    istop/static/table/js/bootstrap.dataTables.js
+    	deleted:    istop/static/table/js/dataTables.fixedColumns.min.js
+    	deleted:    istop/static/table/js/jquery.browser.min.js
+    	deleted:    istop/static/table/js/jquery.dataTables.min.js
+    	modified:   istop/urls.py
+    	modified:   istop/urls.pyc
+
+commit 7ce0f7d089c0fd4f8fb76a75f7e50661710fa908
+Author: Sarah <sjose10@u.rochester.edu>
+Date:   Thu Jul 6 07:49:47 2017 -0700
+
+    Updates to my project
+
+commit 5fc5b16b20b299131d30141eaa1af1f201e322c9
+Author: Sarah <sjose10@u.rochester.edu>
+Date:   Thu Jun 29 19:18:08 2017 -0700
+
+    moving code to git
