@@ -21,9 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '94&fs*wokpf%uil5*z#6=zhl2*mp)zg$n_7$i1o24803uxc&hh'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['45.40.176.12','ciccialab-database.com','www.ciccialab-database.com']
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'crispy_forms',
     'table',
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'istop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +75,14 @@ TEMPLATES = [
         },
     },
 ]
+TEMPLATE_CONTEXT_PROCESSORS = ('django.contrib.auth.context_processors.auth'
+'django.core.context_processors.debug',
+'django.core.context_processors.i18n',
+'django.core.context_processors.media',
+'django.core.context_processors.static',
+'istop.context_processors.google_analytics',
+)
+
 
 WSGI_APPLICATION = 'istop.wsgi.application'
 
@@ -112,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Eastern'
 
 USE_I18N = True
 
@@ -124,5 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = 'istop/static/'
-STATIC_ROOT ='/istop/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "/istop/static/")
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-105009400-1'
+GOOGLE_ANALYTICS_DOMAIN = 'ciccialab-database.com/istop'

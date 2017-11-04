@@ -7,10 +7,13 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        	    <title>iSTOP</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://jqueryui.com/jquery-wp-content/themes/jquery/js/plugins.js"></script>
+	<script src="https://jqueryui.com/jquery-wp-content/themes/jquery/js/main.js"></script>
+                        <title>iSTOP</title>
     </head>
 	<style>
-header, footer {
+header  {
 		color: black;
 		padding: 1em;
 		text-align: center;
@@ -24,19 +27,25 @@ header, footer {
 	margin: 0;
 	padding: 1em;
 	border-right: 1px solid gray;
+        height: 100%;
+        bottom: 50;
 }
 
 article {
 	margin-left: 170px;
 	padding: 1em;
 	overflow: hidden;
+        height: 100%;
 }
+
 p.inset {border-style: inset;}
+
 </style>
 <header>
     <body>
-        <h1>Welcome to iSTOP! <br> A database of sgRNAs for generating stop codons (sgSTOPs) 
-        using CRISPR-dependent base editing </h1>
+        <h1>Welcome to iSTOP! </h1>
+	<h2> A database of sgRNAs for generating STOP codons (sgSTOPs) 
+        using CRISPR-dependent base editing </h2>
 	</header>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -50,29 +59,35 @@ p.inset {border-style: inset;}
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/query">Home</a></li>
+        <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/">Home</a></li>
         <li class="{% if nbar == 'about' %}active{% endif %}"><a href="/istop/faq">FAQ</a></li>
       </ul>
-     
+       <ul class="nav navbar-nav navbar-right">
+       <li><a href ="https://www.ciccialab.com"><font size="+1"><span class="glyphicon glyphicon-home"></span> Ciccia Lab</font></a></li>
+   </ul>
+</div>
     </div>
   </div>
 </nav>
 <div class="sidenav">
 	<h1> About iSTOP </h1>
-	<p> Please see "CRISPR-mediated base editing enables efficient disruption of eukaryotic genes through induction of STOP codons (iSTOP)", Billon P., <i> et al</i>. (under revision) <br> </br>If you want to study the sequences not found in the paper or reproduce the figures in the paper, please visit:<br> <a href= "http://www.github.com/CicciaLab/iSTOP">R package for iSTOP</a>and <a href= "http://www.github.com/CicciaLab/iSTOP-paper">R package for figures</a></br>
+	<p> Please see <a href= "http://www.cell.com/molecular-cell/fulltext/S1097-2765(17)30605-6">CRISPR-mediated base editing enables efficient disruption of eukaryotic genes through induction of STOP codons (iSTOP)", Billon P., Bryant E. <i> et al</i>. Molecular Cell, 2017</a></p> 
+
+<h2> Software</h2>
+<p> <a href= "http://www.github.com/CicciaLab/iSTOP">iSTOP R Package</a>-Design iSTOP guides for any annotated genome</p>
+<p> <a href= "http://www.github.com/CicciaLab/iSTOP-paper">iSTOP paper</a>-Reproduce figures from Billon P., Bryant E. <i>et al</i>. Molecular Cell, 2017</p>
 </div>
 	<article>
 		<div class="container-fluid" >
 		<ul class="nav nav-tabs">
 			<li class= "active"><a data-toggle="tab"  href="##Gene">Gene Search</a></li>
 			<li><a data-toggle="tab" href="##Cancer">Cancer Search</a></li>
+                        <li><a data-toggle="tab" href="##Species">Download Datasets</a></li>
 		</ul>
 		<div class= "tab-content">
 		    	<div id="Gene" class="tab-pane fade in active">
-			<h1 style ="color:green;">Search for Genes</h1>
-		<p>Please type in the gene symbol using UCSC gene names except for <i> A. thaliana</i> which uses TAIR.<br> <b> For example,
-		use KAT5 for TIP60.</b></p><p><br><u>New Feature!</u> It is now possible to design sgSTOPs for modeling nonsense mutations identified in cancer! (<i>Homo sapiens</i> only)</br></p>
-			<div id="search" >
+			<h1 style ="color:green;">Search for genes</h1>
+			<div id="search" class= "col-sm-5" >
 				<!-- <form action="/sub_form/" method="post">
 	    			{% csrf_token %}
 	    			{{ form }}
@@ -88,25 +103,33 @@ p.inset {border-style: inset;}
 <div id="advsearch" class="collapse">
 <p class= "inset">
 <h2><b>Filter the Search</b></h2>
-	{{ advancesearch }}	
+	{{ advancesearch }}
+<!--
+<label for="nmd">NMD Percent:</label>
+<input type="text" id="nmd" readonly style="border:0; font-weight:bold;">
+</p>
+<div id="slider"></div>
+<input type="hidden" id="nmd" name="nmd" value=""/>
+-->	
 </p>
 </div>
 
 					<input type="submit" value="Submit" />
+		
 			</form>
-				
+
+<br></br><br></br><br></br><br></br><br></br>
 		</div>
 		</div>
 		</div>
 		<div id="Cancer" class="tab-pane fade">
-		<h1 style= "color:green;">Search for sgSTOPs that model nonsense mutations identified in cancer</h1>
+		<h1 style= "color:green;">Search for sgSTOPs to model nonsense mutations identified in cancer</h1><br></br>
 		<div class= "row">
-			<div class= "col-sm-5"> <p>Either enter a gene name to search for sgSTOPs that model nonsense mutations identified in cancer</p>
+			<div class= "col-sm-5"> <h4>Search for sgSTOPs to model cancer-associated nonsense mutations in gene(s) of interest</h4><br></br>
 			<form action="/istop/cancergene_form/" method="post">
 				{% csrf_token %}
    				{{ cancergene }}
 
-			<input type="submit" name="cancergeneSubmit" value="Submit" />
 			<br></br>
 		<button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#rank1">
 		<span class ="glyphicon glyphicon-search"></span> Advanced Search</button>
@@ -117,17 +140,19 @@ p.inset {border-style: inset;}
 		</p>
 		</div>
 			
+			<input type="submit" name="cancergeneSubmit" value="Submit" />
 	</form>
 </div>
-		 	<div class= "col-sm-2 text-center"><h1>Or</h1></div>
-			<div class= "col-sm-5"><p>Select the cancer type(s) to display sgSTOPs for all the genes that would model nonsense mutations in that type</p>
+			<div class= "col-sm-7" style="border-left: 1px solid #ccc;"><h4>Search for sgSTOPs to model nonsense mutations in cancer type(s) of interest</h4><p>Do not select all of the cancer types</p><br></br>
 	<div class="col-sm-5">
         <form action="/istop/cancertype_form/" method="post">	
 	{% csrf_token %}
 	{{ cancertype }}
 
 	<input type="submit" name="cancertypeSubmit" value="Submit" />
-	</div>
+	
+<br></br><br></br>
+</div>
 <div class= "col-sm-5">
 <div class= "container">
 <button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#rank">
@@ -140,11 +165,56 @@ p.inset {border-style: inset;}
 </div>
 
 </div>
+
       </form>
 </div>
-		</div>
-           </div>
+</div>
+</div>
+</div>
+		<div id="Species" class="tab-pane fade">
+		<h1 style= "color:green;">Download the entire dataset for a species of interest</h1>
+   <p> Click on the links to download the entire dataset for each species</p>
+
+<p><a href= "http://dx.doi.org/10.17632/xbdtvf6bvj.1">Complete iSTOP Datasets</a></p>
+			<p> <a href = "http://data.mendeley.com/datasets/xbdtvf6bvj/1/files/7c8f0507-8ed7-4bf5-8274-0f419fa454e9/H.sapiens-hg38.csv?dl=1"><i>H. sapiens</i> Dataset</a></p>
+         	<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/f6fd90c2-45ff-42f6-b1c0-12124a8d025f/M.musculus-mm10.csv?dl=1"><i>M. musculus</i> Dataset</a></p>
+         	<p><a href="https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/75e4cc53-2d3c-4011-8ca5-ffb4831467cb/R.norvegicus-rn6.csv?dl=1"><i>R. norvegicus</i> Dataset</a></p>
+         
+<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/630c9c88-1ddb-4f0d-985e-8be3d397aae0/D.rerio-danRer10.csv?dl=1"><i>D. rerio</i>  Dataset</a></p>
+         
+<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/95ce6097-f988-4574-9eb1-c201bb6110f0/C.elegans-ce11.csv?dl=1"><i>C. elegans</i>  Dataset</a></p>
+
+<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/65a61811-331f-41f2-b86a-9b68ec85b2e8/D.melanogaster-dm6.csv?dl=1"><i>D. melanogaster</i>  Dataset</a></p>
+<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/521c496c-7f7d-498e-a966-9657118f5656/A.thaliana-plantsmart28.csv?dl=1"><i>A. thaliana</i> Dataset</a></p>
+<p><a href= "https://data.mendeley.com/datasets/xbdtvf6bvj/1/files/b84cdd0b-c283-4f90-8f2a-8b802ac703ad/S.cerevisiae-sacCer3.csv?dl=1"><i>S. cerevisiae</i> Dataset</a></p>
+<br></br><br></br><br></br><br></br><br></br>
+</div>
+</div>
+
+
+
+<!--			<form action="/istop/speciestype_form/" method="post">
+				{% csrf_token %}
+   				{{ speciestype }}
+
+			<input type="submit" name="speciesgeneSubmit" value="Submit" />
+<div class= "container">
+<button type= "button" class= "btn btn-info" data-toggle="collapse" data-target="#rank3">
+<span class ="glyphicon glyphicon-search"></span> Advanced Search</button>
+<div id="rank3" class="collapse">
+<p class= "inset">
+<h2><b>Filter the Search</b></h2>
+	{{ speciestypeadvance }}
+</p>
+</div>
+
+</div>
+      </form>
+</div>
 	</div>
+</div>
+-->
+
 </article>
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -153,17 +223,41 @@ p.inset {border-style: inset;}
 </body>
 
 <!-- End Main Body-->
-<footer>
-	<div id= 'footer'>
-	Created by Sarah Joseph and Aaron Meltzer (2017)
-	</div> 
-	<div id= 'footer'>
-	For more information on our lab please visit the  <a href= "http://www.ciccialab.com">Ciccia Lab</a> <br>Contact <a href= "mailto:saj2143@cumc.columbia.edu?Subject=iSTOP" target="_top">Sarah Joseph</a> for questions regarding the website
-	</div>
-	</div>
-</footer>
-	</div>
-	</div>
 
-	</body>
+	<footer> 
+<div class= 'panel-footer text-center'>
+	<p>Website created by Sarah Joseph and Aaron Meltzer (2017)</p>
+	<p>For more information on our lab please visit the  <a href= "http://www.ciccialab.com">Ciccia Lab</a> <br>Contact <a href= "mailto:saj2143@cumc.columbia.edu?Subject=iSTOP" target="_top">Sarah Joseph</a> for questions regarding the website
+	</p>
+</div>
+</footer>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+   $( function() {
+         $( "#slider" ).slider({
+           min: 0,
+           max: 100,
+           value: 0,
+           slide: function( event,elt ) {
+               $( "#nmd" ).val( elt.value + "%" );
+             }
+      });
+       $( "#nmd" ).val( $( "#slider").slider( "value" ) + "%" );
+} );
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105009400-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
 </html>

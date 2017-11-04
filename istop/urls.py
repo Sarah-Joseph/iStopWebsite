@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from geneFinder import views
+from django.conf.urls.static import static
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.post_query),
-    url(r'^gene_form/',views.post_geneForm),
-    url(r'^query',views.query_page),
-    url(r'^faq/',views.faq_page),
-    url(r'^cancergene_form/',views.post_cancerGene),
-    url(r'^cancertype_form/',views.post_cancerType)
+    url(r'^(?i)admin/', admin.site.urls),
+    url(r'^(?i)$', views.query_page),
+    url(r'^(?i)gene_form/',views.post_geneForm),
+    url(r'^(?i)query',views.query_page),
+    url(r'^(?i)faq/',views.faq_page),
+    url(r'^(?i)cancergene_form/',views.post_cancerGene),
+    url(r'^(?i)cancertype_form/',views.post_cancerType),
+    url(r'^(?i)speciestype_form/',views.post_speciesType),
 
 ]
-

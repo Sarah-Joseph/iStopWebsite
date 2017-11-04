@@ -64,15 +64,17 @@
         <li class="{% if nbar == 'home' %}active{% endif %}"><a href="/istop/query">Home</a></li>
         <li class="{% if nbar == 'about' %}active{% endif %}"><a href="/istop/faq">FAQ</a></li>
       </ul>
-     
-    </div>
+       <ul class="nav navbar-nav navbar-right">
+       <li><a href ="https://www.ciccialab.com"><font size="+1"><span class="glyphicon glyphicon-home"></span> Ciccia Lab</font></a></li>
+   </ul>
+</div>
   </div>
 </nav>
     <body>
-        <h1 style = "color: green;"> Results for: {{ SpeciesName }}</h1>
+        <h1 style = "color: green;"> {{ SpeciesName }}</h1>
 		<p> The lower case letter indicates the <b>targeted base</b>.</span> <br> Example: GTTCCC<b>c</b>AATTGAAAGTTGC</p>
-<br><b>Using the links</b> (only for organisms in the UCSC genome browser): Before clicking the link on each sgSTOP, make sure to set the BLAT search in the UCSC genome browser to the organism that you want to search by clicking  <a href="http://genome.ucsc.edu/cgi-bin/hgBlat">here</a>. Then click on the link and it will automatically search for the sgSTOP in the UCSC genome browser.</br>
-
+<br><b>Using the links</b> (only for organisms in the UCSC genome browser): Before clicking the link on each sgSTOP sequence, make sure to set the BLAT search in the UCSC genome browser to the organism that you want to search by clicking  <a href="http://genome.ucsc.edu/cgi-bin/hgBlat">here</a>. Then click on the link and it will automatically search for the sgSTOP in the UCSC genome browser.</br>
+<br></br>
 
   	{%  if query_results %}
 		<table id="dataTable" class="display table" cellspacing="0" width="100%">
@@ -88,23 +90,19 @@
 				<tr>
 					{% if 'id' in headers %} <td>{{ item.id }}</td> {% endif %}
 					{% if 'Gene Name' in headers %} <td datatable-toggle="tooltip" title="Click here to see more information about the sgSTOPs">{{ item.gene }}</td> {% endif %}
-					{% if 'Transcript(s)' in headers %} <td>{{ item.txs }}</td> {% endif %}
-					{% if 'exon' in headers %} <td>{{ item.exon }}</td> {% endif %}
-					{% if 'pep_length' in headers %} <td>{{ item.pep_length }}</td> {% endif %}
-					{% if 'cds_length' in headers %} <td>{{ item.cds_length }}</td> {% endif %}
-					{% if 'chr' in headers %} <td>{{ item.chr }}</td> {% endif %}
+					{% if 'Chromosome' in headers %} <td>{{ item.chr }}</td> {% endif %}
 					{% if 'Strand' in headers %} <td>{{ item.strand }}</td> {% endif %}
-					{% if 'sg_strand' in headers %} <td>{{ item.sg_strand }}</td> {% endif %}
-					{% if 'aa_target' in headers %} <td>{{ item.aa_target }}</td> {% endif %}
+					{% if 'Genomic Coordinate' in headers %} <td>{{ item.genome_coord }}</td> {% endif %}
+					{% if 'Transcript(s)' in headers %} <td>{{ item.txs }}</td> {% endif %}
 					{% if 'Targeted Codon' in headers %} <td>{{ item.codon }}</td> {% endif %}
-					{% if 'AA Target' in headers %} <td>{{ item.aa_target }}</td> {% endif %}
-					{% if 'CDS Coordinates' in headers %} <td>{{ item.cds_coords }}</td> {% endif %}
-					{% if 'genome_coord' in headers %} <td>{{ item.genome_coord }}</td> {% endif %}
-					{% if 'n_tx_in_gene' in headers %} <td>{{ item.n_tx_in_gene }}</td> {% endif %}
-					{% if 'n_tx' in headers %} <td>{{ item.n_tx }}</td> {% endif %}
-					{% if 'Percent Transcript' in headers %} <td>{{ item.percent_tx }}</td> {% endif %}
-					{% if 'Relative Position of Largest Isoform' in headers %} <td>{{ item.rel_pos_largest_isoform }}</td> {% endif %}
-					{% if 'PAM: NGG' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgngg }}">{{ item.sgngg }}</a></td> {% endif %}
+					{% if 'Number of Isoforms' in headers %} <td>{{ item.n_tx_in_gene }}</td> {% endif %}
+					{% if 'Percent Isoforms' in headers %} <td>{{ item.percent_tx }}</td> {% endif %}
+					{% if 'Relative Position in Largest Isoform' in headers %} <td>{{ item.rel_pos_largest_isoform }}</td> {% endif %}
+					{% if 'No Upstream G' in headers %} <td>{{ item.no_upstream_g }}</td> {% endif %}
+					{% if 'RFLP Loss' in headers %} <td>{{ item.rflp_loss }}</td> {% endif %}
+					{% if 'RFLP Gain' in headers %} <td>{{ item.rflp_gain }}</td> {% endif %}
+					{% if 'NMD Prediction (%)' in headers %} <td>{{ item.percent_nmd }} </td> {% endif %}
+                                        {% if 'PAM: NGG' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgngg }}">{{ item.sgngg }}</a></td> {% endif %}
 					{% if 'Off-target Prediction PAM: NGG' in headers %} <td>{{ item.sgngg_matches }}</td> {% endif %}
 					{% if 'Spacing PAM: NGG' in headers %} <td>{{ item.sgngg_spacing }}</td> {% endif %}
 					{% if 'PAM: NGA' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgnga }}">{{ item.sgnga }}</a></td> {% endif %}
@@ -122,13 +120,7 @@
 					{% if 'PAM: NNNRRT' in headers %} <td><a href="http://genome.ucsc.edu/cgi-bin/hgBlat?type=BLAT%27s+guess&userSeq={{ item.sgnnnrrt }}">{{ item.sgnnnrrt }}</a></td> {% endif %}
 					{% if 'Off-target Prediction PAM: NNNRRT' in headers %} <td>{{ item.sgnnnrrt_matches }}</td> {% endif %}
 					{% if 'Spacing PAM: NNNRRT' in headers %} <td>{{ item.sgnnnrrt_spacing }}</td> {% endif %}
-                                        {% if 'No Upstream G' in headers %} <td>{{ item.no_upstream_g }}</td> {% endif %}
-					{% if 'RFLP Loss' in headers %} <td>{{ item.rflp_loss }}</td> {% endif %}
-					{% if 'RFLP Gain' in headers %} <td>{{ item.rflp_gain }}</td> {% endif %}
-					{% if 'species' in headers %} <td>{{ item.species }}</td> {% endif %}
-					{% if 'Percent NMD' in headers %} <td>{{ item.percent_nmd }} </td> {% endif %}
-					{% if 'Cancer type(s)' in headers %} <td> {{ item.cancer_type }} </td> {% endif %}
-					{% if 'Genomic Sequence Context' in headers %} <td> {{ item.genomic_sequence_context }} </td> {% endif %}
+                                        {% if 'Cancer type(s)' in headers %} <td> {{ item.cancer_type }} </td> {% endif %}
 				</tr>
 				{% endfor %}
 			</tbody>
@@ -142,17 +134,24 @@ $(document).ready(function() {
           dom: 'Bfrtip',
           buttons: [
              'colvis',
-             'excelHtml5'
+             { extend: 'excelHtml5', text: 'Download Table (Excel)'},
+             { extend: 'csvHtml5', text: 'Download Table (.csv)'},
+             'pageLength'
           ],
           responsive: true,
-          "order":[[1,"asc"]],
+          "order":[[7,"asc"]],
+          "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
        	  columnDefs: [
-           { responsivePriority: 1, targets:2 },
-           { responsivePriority: 2, targets:3 },
+           { responsivePriority: 1, targets:1 },
+           { responsivePriority: 2, targets:2 },
          
 	   { "visible": false, "targets": 1 },
-	  // { "visible": false, "targets": 2 },
-          // { "visible": false, "targets": 3 },
+	   { "visible": false, "targets": 2 },
+           { "visible": false, "targets": 3 },
+           { "visible": false, "targets": 4 },
+           { "visible": false, "targets": 5 },
+           { "visible": false, "targets": 6 },
+
 
 		]
 	} );
@@ -166,6 +165,16 @@ $(function () {
                container: 'body'
      });
 })
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105009400-1', 'auto');
+  ga('send', 'pageview');
+
 </script>
 
 </html>

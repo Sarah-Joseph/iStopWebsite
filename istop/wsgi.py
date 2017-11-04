@@ -8,11 +8,9 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
 import os
+import sys
+sys.path.append('/opt/bitnami/apps/django/django_projects/istop')
 
 from django.core.wsgi import get_wsgi_application
-import sys
-
-sys.path.append('/opt/bitnami/apps/django/django_projects/istop')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "istop.settings")
-
 application = get_wsgi_application()

@@ -12,9 +12,8 @@ from django.db import models
 
 class Alias(models.Model):
     id = models.TextField(db_column='ID', blank=True, primary_key=True)  # Field name made lowercase.
-    species = models.TextField(blank=True, null=True)
-    gene = models.TextField(blank=True, null=True)
-    alias = models.TextField(blank=True, null=True)
+    ucsc = models.TextField(db_column='UCSC', blank=True, null=True)  # Field name made lowercase.
+    alias = models.TextField(db_column='Alias', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
