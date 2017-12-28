@@ -18,12 +18,12 @@ from fuzzywuzzy import process
 
 '''
 class HomePageView(TemplateView):
-	def get(self, request, **kwarfs):
+  def get(self, request, **kwarfs):
           speciesForm = SpeciesForm(request.POST)
           advsearch= advForm(request.POST)
-	  cancergene= CancergeneForm(request.POST)
-	  cancertype= CancertypeForm(request.POST)
-	  cancergeneadvance= CancergeneAdvanceForm(request.POST)
+    cancergene= CancergeneForm(request.POST)
+    cancertype= CancertypeForm(request.POST)
+    cancergeneadvance= CancergeneAdvanceForm(request.POST)
           cancertypeadvance= CancertypeAdvanceForm(request.POST)
           speciestype= SpeciestypeForm(request.POST)
           speciestypeadvance= SpeciestypeAdvanceForm(request.POST)
@@ -86,7 +86,7 @@ def post_geneForm(request):
       genes = genes.exclude(percent_nmd__lte=50)
     if len(advanceData['off']) !=0:
       if 'Off-target Prediction PAM: NGG' in headers:
-	genes = genes.exclude(sgngg_matches__gt=0)
+  genes = genes.exclude(sgngg_matches__gt=0)
       if 'Off-target Prediction PAM: NGA' in headers:
         genes = genes.exclude(sgnga_matches__gt=0)
       if 'Off-target Prediction PAM: NGCG' in headers:
@@ -147,11 +147,11 @@ def post_cancerGene(request):
 
       if cancergeneData['cancer_type'] == 'Any':
         genes = genes.exclude(cancer_type__exact='')
-      	step7 = len(genes);
+        step7 = len(genes);
       else:
         cancertype = cancergeneData['cancer_type']
         genes = genes.exclude(~Q(cancer_type__icontains=cancertype))
-      	step8 = len(genes)
+        step8 = len(genes)
       if cancergeneadvData['PAM'] is not None:
         map1 = {'PAM: NGG':'Off-target Prediction PAM: NGG','PAM: NGA':'Off-target Prediction PAM: NGA','PAM: NGCG':'Off-target Prediction PAM: NGCG','PAM: NGAG':'Off-target Prediction PAM: NGAG', 'PAM: NNGRRT':'Off-target Prediction PAM: NNGRRT','PAM: NNNRRT': 'Off-target Prediction PAM: NNNRRT'}
         z = []
@@ -180,7 +180,7 @@ def post_cancerGene(request):
         genes = genes.exclude(no_upstream_g='FALSE')
       if len(cancergeneadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-	  genes = genes.exclude(sgngg_matches__gt=0)
+    genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:
@@ -254,7 +254,7 @@ def post_cancerType(request):
         genes = genes.exclude(no_upstream_g='FALSE')
       if len(cancertypeadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-	  genes = genes.exclude(sgngg_matches__gt=0)
+    genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:
@@ -325,7 +325,7 @@ def post_speciesType(request):
         step3 = len(genes)
       if len(speciestypeadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-	  genes = genes.exclude(sgngg_matches__gt=0)
+    genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:
@@ -366,9 +366,9 @@ def post_speciesType(request):
     #  if password in ['Ciccialab','Ciccialabisthebest', 'istop']:
     #    speciesForm = SpeciesForm(request.POST)
     #    advsearch= advForm(request.POST)
-#	cancergene= CancergeneForm(request.POST)
-#	cancertype= CancertypeForm(request.POST)
-#	cancergeneadvance= CancergeneAdvanceForm(request.POST)
+# cancergene= CancergeneForm(request.POST)
+# cancertype= CancertypeForm(request.POST)
+# cancergeneadvance= CancergeneAdvanceForm(request.POST)
  #       cancertypeadvance= CancertypeAdvanceForm(request.POST)
   #      return render(request, 'query.html', {'advancesearch':advsearch, 'species':speciesForm, 'cancergene':CancergeneForm, 'cancergeneadvance':CancergeneAdvanceForm, 'cancertype':CancertypeForm, 'cancertypeadvance':CancertypeAdvanceForm})
  # form = PassForm()
@@ -401,7 +401,6 @@ def shouldalias(i, speciesData, nameMap):
     else:
       return False
   return False
- 
 def shouldcanceralias(i, cancergeneData):
   table = models.Humans
   ingene = table.objects.filter(gene__exact=i)
