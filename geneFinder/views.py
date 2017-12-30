@@ -2,19 +2,17 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from forms import SpeciesForm
-from forms import PassForm
-from forms import advForm
-from forms import CancergeneForm
-from forms import CancertypeForm
-from forms import CancertypeAdvanceForm
-from forms import CancergeneAdvanceForm
-from forms import SpeciestypeForm
-from forms import SpeciestypeAdvanceForm
+from .forms import SpeciesForm
+from .forms import PassForm
+from .forms import advForm
+from .forms import CancergeneForm
+from .forms import CancertypeForm
+from .forms import CancertypeAdvanceForm
+from .forms import CancergeneAdvanceForm
+from .forms import SpeciestypeForm
+from .forms import SpeciestypeAdvanceForm
 import models 
 from django.db.models import Q
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
 
 '''
 class HomePageView(TemplateView):
@@ -86,7 +84,7 @@ def post_geneForm(request):
       genes = genes.exclude(percent_nmd__lte=50)
     if len(advanceData['off']) !=0:
       if 'Off-target Prediction PAM: NGG' in headers:
-  genes = genes.exclude(sgngg_matches__gt=0)
+        genes = genes.exclude(sgngg_matches__gt=0)
       if 'Off-target Prediction PAM: NGA' in headers:
         genes = genes.exclude(sgnga_matches__gt=0)
       if 'Off-target Prediction PAM: NGCG' in headers:
@@ -180,7 +178,7 @@ def post_cancerGene(request):
         genes = genes.exclude(no_upstream_g='FALSE')
       if len(cancergeneadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-    genes = genes.exclude(sgngg_matches__gt=0)
+          genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:
@@ -254,7 +252,7 @@ def post_cancerType(request):
         genes = genes.exclude(no_upstream_g='FALSE')
       if len(cancertypeadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-    genes = genes.exclude(sgngg_matches__gt=0)
+          genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:
@@ -325,7 +323,7 @@ def post_speciesType(request):
         step3 = len(genes)
       if len(speciestypeadvData['off']) !=0:
         if 'Off-target Prediction PAM: NGG' in headers:
-    genes = genes.exclude(sgngg_matches__gt=0)
+          genes = genes.exclude(sgngg_matches__gt=0)
         if 'Off-target Prediction PAM: NGA' in headers:
           genes = genes.exclude(sgnga_matches__gt=0)
         if 'Off-target Prediction PAM: NGCG' in headers:

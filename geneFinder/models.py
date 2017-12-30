@@ -21,20 +21,20 @@ class Alias(models.Model):
         db_table = 'alias'
 
 
-class Cosmic(models.Model):
-    id = models.TextField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
-    gene = models.TextField(blank=True, null=True)
-    cancer_type = models.TextField(blank=True, null=True)
-    mutation_aa = models.TextField(blank=True, null=True)
-    chr = models.TextField(blank=True, null=True)
-    strand = models.TextField(blank=True, null=True)
-    coord = models.TextField(blank=True, null=True)
-    pam = models.TextField(db_column='PAM', blank=True, null=True)  # Field name made lowercase.
-    istop = models.TextField(db_column='iSTOP', blank=True, null=True)  # Field name made lowercase.
+#class Cosmic(models.Model):
+#    id = models.TextField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
+#    gene = models.TextField(blank=True, null=True)
+    #cancer_type = models.TextField(blank=True, null=True)
+    #mutation_aa = models.TextField(blank=True, null=True)
+    #chr = models.TextField(blank=True, null=True)
+    #strand = models.TextField(blank=True, null=True)
+    #coord = models.TextField(blank=True, null=True)
+    #pam = models.TextField(db_column='PAM', blank=True, null=True)  # Field name made lowercase.
+    #istop = models.TextField(db_column='iSTOP', blank=True, null=True)  # Field name made lowercase.
 
-    class Meta:
-        managed = False
-        db_table = 'cosmic'
+    #class Meta:
+     #   managed = False
+     #   db_table = 'cosmic'
 
 
 class DjangoMigrations(models.Model):
